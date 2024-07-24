@@ -1,14 +1,12 @@
-version: '3.8'
+version: '3'
 
 services:
-  db:
-    image: postgres:latest
-    restart: always
-    environment:
-      POSTGRES_DB: events_platform
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: super_secret
+  api-solid-pg:
+    image: bitnami/postgresql
     ports:
-      - "5432:5432"
-    volumes:
-      - ./data:/var/lib/postgresql/data
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=events_platform
+
