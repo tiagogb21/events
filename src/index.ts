@@ -5,6 +5,8 @@ import { envServerSchema } from "./env";
 
 const server = fastify();
 
+console.log(process.env.DATABASE_URL)
+
 server.get("/ping", async (request, reply) => {
     return "pong\n";
 });
