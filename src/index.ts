@@ -1,5 +1,4 @@
 import fastify from "fastify";
-import 'dotenv/config'
 
 import { envServerSchema } from "./env";
 
