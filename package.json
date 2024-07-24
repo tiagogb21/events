@@ -2,11 +2,19 @@
     "name": "projects",
     "version": "1.0.0",
     "main": "index.js",
-    "type": "module",
     "scripts": {
-        "build": "tsc -p tsconfig.json",
-        "start": "tsx src/index.ts",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start:dev": "tsx watch src/server.ts",
+        "start": "node build/server.js",
+        "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
+        "test:install-prisma-environment": "npm link vitest-environment-prisma",
+        "build": "tsup src --out-dir build",
+        "test": "vitest run --dir src/use-cases",
+        "test:watch": "vitest --dir src/use-cases",
+        "pretest:e2e": "run-s test:create-prisma-environment test:install-prisma-environment",
+        "test:e2e": "vitest run --dir src/http",
+        "test:e2e:watch": "vitest --dir src/http",
+        "test:coverage": "vitest run --coverage",
+        "test:ui": "vitest --ui"
     },
     "keywords": [],
     "author": "",
@@ -23,8 +31,11 @@
     "devDependencies": {
         "@types/bcryptjs": "^2.4.6",
         "@types/node": "^20.14.11",
+        "@types/supertest": "^6.0.2",
         "dotenv": "^16.4.5",
         "prisma": "^5.17.0",
-        "typescript": "^5.5.3"
+        "supertest": "^7.0.0",
+        "typescript": "^5.5.3",
+        "vitest": "^2.0.4"
     }
 }
